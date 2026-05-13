@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>COMP DATA</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: auto;
+    color: #ffffff;
+    background-color: #121212; /* Slightly softer black for better readability */
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 24pt;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  /* Universal Table Styling */
+  table {
+    width: 100%;
+    margin: 0 auto 40px auto; /* Adds space below each table */
+    border-collapse: collapse;
+    background-color: #000000;
+    border: 2px solid #ffffff;
+  }
+
+  th, td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #444; /* Darker interior borders for a cleaner look */
+  }
+
+  /* Header Specifics */
+  th {
+    background-color: #222; /* Distinguishes header from data */
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 13pt;
+    border-bottom: 2px solid #ffffff;
+  }
+
+  /* Data Cell Specifics */
+  td {
+    font-size: 11pt;
+  }
+
+  /* Hover effect for better row tracking */
+  tbody tr:hover {
+    background-color: #1a1a1a;
+  }
+
+  /* Adjusting the Price header section */
+  .PRICE {
+    margin-top: 60px;
+  }
+</style>
+</head>
+<body>
+<h2><u>COMPUTER DATA:</u></h2>
+<table border="2">
+    <thead>
+        <tr>
+            <th>Model</th>
+            <th>Release Year</th>
+            <th>CPU Model</th>
+            <th>CPU Cores</th>
+            <th>RAM GB</th>
+            <th>Storage GB</th>
+            <th>GPU Model</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for d in data %}
+        <tr>
+            <td>{{ d['model'] }}</td>
+            <td>{{ d['release_year'] }}</td>
+            <td>{{ d['cpu_model'] }}</td>
+            <td>{{ d['cpu_cores'] }}</td>
+            <td>{{ d['ram_gb'] }}</td>
+            <td>{{ d['storage_gb'] }}</td>
+            <td>{{ d['gpu_model'] }}</td>
+            <td>{{ d['notes'] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="PRICE">
+<h2><u>COMPUTER PRICE:</u></h2>
+</div>
+<table border="2">
+    <thead>
+        <tr>
+            <th>Model</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for d in data %}
+        <tr>
+            <td>{{ d['model'] }}</td>
+            <td>${{ d['price_usd'] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+<div class="PRICE">
+<h2><u>COMPUTER STATS:</u></h2>
+</div>
+<table border="2">
+    <thead>
+        <tr>
+            <th>Metric</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Total Inventory Value</strong></td>
+            <td>${{ "{:,.2f}".format(total_price) }}</td>
+        </tr>
+        <tr>
+            <td><strong>Average Computer Price</strong></td>
+            <td>${{ "{:,.2f}".format(avg_price) }}</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+</body>
+</html>
